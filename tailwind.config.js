@@ -9,13 +9,13 @@ const radix =  require("tailwindcss-radix");
 
 // Add your custom theme colors here
 const themeColors = {
-  primary: colors.violet,
+  primary: colors.blue,
   secondary: colors.gray,
-  success: colors.emerald,
+  success: colors.teal,
   warning: colors.amber,
-  danger: colors.rose,
+  danger: colors.pink,
   info: colors.indigo,
-  dark: colors.slate,
+  dark: colors.cyan,
 };
 
 module.exports = {

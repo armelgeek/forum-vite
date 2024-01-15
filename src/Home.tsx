@@ -1,16 +1,19 @@
 import React from "react";
-import * as Yup from "yup";
-import Content from "./components/admin/Content";
-import Page from "./components/admin/Page";
+import { IoChatbubbles } from "react-icons/io5";
+import Header from "./components/Header";
+import Topics from "./components/topic";
+import { FaEye, FaUserFriends } from "react-icons/fa";
+import { BsChat, BsChatHeartFill } from "react-icons/bs";
+import { CiChat2 } from "react-icons/ci";
 
 const Home = () => {
-  
+
   return (
-    <Content>
-      <Page>
-        <p>Hello world!</p>
-      </Page>
-    </Content>
+    <>
+    <h3 className="text-pink-500 my-2 uppercase flex flex-row gap-2"><BsChatHeartFill size={18}/> <span>Forum</span></h3>
+     <Topics />
+
+    </>
   );
 };
 export default Home;

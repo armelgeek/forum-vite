@@ -1,15 +1,15 @@
 @layer components {
   .card {
     $card: &;
-    @apply w-full  bg-white shadow transition-all duration-300 dark:bg-slate-800;
+    @apply w-full rounded-md bg-white border-primary-400 border-2 duration-300 dark:bg-slate-800;
 
     // Direct elements
     &-header {
-      @apply border-b border-b-slate-200 px-4 py-4 dark:border-slate-700 sm:px-6;
+      @apply px-4 pt-4 dark:border-slate-700 sm:px-6;
     }
 
     &-body {
-      @apply p-4 sm:p-6;
+      @apply p-2 sm:p-6;
     }
 
     &-footer {
