@@ -73,3 +73,28 @@ export const displayShortMonth = (timestamp:any) => {
   const monthIndex = date.getMonth();
   return `${monthNames[monthIndex]}`;
 };
+
+export function formatRelativeDate(dateString:string,startText:string = 'Il y a') {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+
+  if (diff < 60000) { // moins d'une minute
+    return `${startText} < 1 minute`;
+  } else if (diff < 3600000) { // moins d'une heure
+    const minutes = Math.floor(diff / 60000);
+    return `${startText} ${minutes} ${minutes > 1 ? "minutes" : "minute"}`;
+  } else if (diff < 86400000) { // moins d'un jour
+    const hours = Math.floor(diff / 3600000);
+    return `${startText} ${hours} ${hours > 1 ? "heures" : "heure"}`;
+  } else if (diff < 2592000000) { // moins d'un mois
+    const days = Math.floor(diff / 86400000);
+    return `${startText} ${days} ${days > 1 ? "jours" : "jour"}`;
+  } else if (diff < 31536000000) { // moins d'une année
+    const months = Math.floor(diff / 2592000000);
+    return `${startText} ${months} ${months > 1 ? "mois" : "mois"}`;
+  } else { // plus d'un an
+    const years = Math.floor(diff / 31536000000);
+    return `${startText} ${years} ${years > 1 ? "années" : "année"}`;
+  }
+}

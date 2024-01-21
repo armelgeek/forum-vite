@@ -1,6 +1,5 @@
 import React from "react";
 import ViewTopics from "./components/viewtopic";
-import QuickResponse from "./QuickResponse";
 
 const Topic = () => {
 
@@ -26,7 +25,7 @@ const Topic = () => {
                 </div>
                 <div className="flex flex-row gap-2">
 
-                    <p className='text-xs  text-danger'>Pages: 1 2 3 … 131</p>
+                    <p className='text-xs'>Pages: 1 2 3 … 131</p>
                 </div>
             </div>
             <ViewTopics />
@@ -37,10 +36,15 @@ const Topic = () => {
                 </div>
                 <div className="flex flex-row gap-2">
 
-                    <p className='text-xs text-danger'>Pages: 1 2 3 … 131</p>
+                    <p className='text-xs'>Pages: 1 2 3 … 131</p>
                 </div>
             </div>
-            <QuickResponse/>
+            <div className="bg-primary-500 px-5 py-3 mt-9 w-full">
+                <h5 className="uppercase text-white ">Reponse rapide</h5>
+                <textarea className="w-full h-52" placeholder="Hello">
+
+                </textarea>
+            </div>
         </>
     );
 };

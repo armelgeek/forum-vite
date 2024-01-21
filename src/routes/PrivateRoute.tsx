@@ -1,78 +1,31 @@
-import React from "react";
-import { Route, Redirect, Link } from "react-router-dom";
-import Sidebar from "../components/admin/Sidebar";
-import AppContainer from "../components/admin/AppContainer";
-import BodyWrapper from "../components/admin/BodyWrapper";
-import Header from "../components/admin/Header";
-import SidebarHeader from "../components/admin/SidebarHeader";
-import NavTree from "../components/admin/NavTree";
-import NavItem from "../components/admin/NavItem";
-import {
-  FiBook,
-  FiCloud,
-  FiHelpCircle,
-  FiHome,
-  FiInfo,
-  FiList,
-  FiLogOut,
-  FiPlay,
-  FiPlayCircle,
-  FiPlus,
-  FiSearch,
-  FiUsers,
-} from "react-icons/fi";
-import { MdOutlineExplore, MdSkipPrevious } from "react-icons/md";
-import { LuShuffle } from "react-icons/lu";
-import { ImNext, ImNext2, ImPrevious, ImPrevious2 } from "react-icons/im";
-import {
-  FaEllipsis,
-  FaEllipsisVertical,
-  FaLanguage,
-  FaLayerGroup,
-  FaPlus,
-  FaRepeat,
-} from "react-icons/fa6";
-import { TbLanguage, TbRepeat } from "react-icons/tb";
-import {
-  BsMoonFill,
-  BsShuffle,
-  BsSkipBackward,
-  BsSkipBackwardFill,
-  BsSkipForward,
-  BsSkipForwardFill,
-  BsSunFill,
-} from "react-icons/bs";
-import { FaInfoCircle, FaKickstarter } from "react-icons/fa";
+import React, { useCallback, useContext } from 'react';
+import { Route, Redirect, Link } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+import { AuthContext } from '../store/Provider/AuthProvider';
+import { useLocation } from 'react-router-dom';
 
+// @ts-ignore
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = false;
+  const { state, dispatch }:any = useContext(AuthContext);
+  const isAuth = useAuth();
+  const location = useLocation();
+  const isActive = useCallback((route: string) => {
+    return location.pathname == route;
+  }, [location.pathname])
   return (
-    <AppContainer>
-      <Sidebar>
-        <SidebarHeader />
-
-
-        <NavTree route={"/"} title={"Home"}>
-          <FiInfo />
-        </NavTree>
-
-      </Sidebar>
-      <BodyWrapper>
-        <Header>
-
-        </Header>
-        <Route
-          {...rest}
-          render={(props: any) =>
-            isAuthenticated ? (
-              <Component {...props} />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
-        />
-      </BodyWrapper>
-    </AppContainer>
+    <>
+    
+      <div className="ml-56  max-[828px]:mx-20 max-[711px]:mx-10 max-[675px]:mx-20 max-[591px]:mx-16 max-[528px]:mx-4 max-[474px]:h-24 max-[474px]:pb-10">
+        <main className="col-span-5">
+          <Route
+            {...rest}
+            render={(props: any) =>
+              isAuth ? <Component {...props} /> : <Redirect to="/login" />
+            }
+          />
+        </main>
+      </div>
+    </>
   );
 };
 

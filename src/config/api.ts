@@ -1,12 +1,13 @@
-import axios, {AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 import _ from "lodash";
+import { apiPrefix, storageDataPrefix } from "./constant";
 export const apiConfig = {
-  baseURL: process.env.API_URL || "http://localhost:8100/api/",
+  baseURL: apiPrefix.baseUrl,
   headers: () => {
     return {
       Accept: "application/json",
       "Content-Type": "application/json; charset=UTF-8",
-      "x-access-token": localStorage.getItem("token"),
+      "x-access-token": localStorage.getItem(storageDataPrefix.accessToken),
     };
   },
   error: {
@@ -19,7 +20,7 @@ export const apiConfig = {
 };
 const request = axios;
 request.interceptors.response.use(
-  (response:any) => {
+  (response: any) => {
     if (_.isUndefined(response)) {
       return [];
     } else {
@@ -28,7 +29,7 @@ request.interceptors.response.use(
   },
   (error) => console.log(error)
 );
-const api = (method:string, url:string, variables:any, headers:any) =>
+const api = (method: string, url: string, variables: any, headers: any) =>
   new Promise((resolve, reject) => {
     request({
       url: `${url}`,
@@ -54,24 +55,24 @@ const api = (method:string, url:string, variables:any, headers:any) =>
       });
   });
 export default {
-  get: (...args:any) => {
+  get: (...args: any) => {
 
     // @ts-ignore
     return api("get", ...args)
   },
-  post: (...args:any) => {
+  post: (...args: any) => {
     // @ts-ignore
     return api("post", ...args)
   },
-  put: (...args:any) => {
+  put: (...args: any) => {
     // @ts-ignore
     return api("put", ...args);
   },
-  patch: (...args:any) => {
+  patch: (...args: any) => {
     // @ts-ignore
     return api("patch", ...args)
   },
-  delete: (...args:any) => {
+  delete: (...args: any) => {
     // @ts-ignore
     return api("delete", ...args)
   },

@@ -143,7 +143,13 @@ export const mergeReducers = (moduleName:any, initialState:any, mutations:any) =
     [`${moduleName}__fetch_items`](state:any, payload:any) {
       return {
         ...state,
-        items: deduplicationList([...payload]),
+        items: deduplicationList([...payload.rows]),
+        meta: {
+          ...state.meta,
+          totalPages: payload.totalPages,
+          totalItems: payload.totalItems,
+          currentPage: payload.currentPage,
+        }
       };
     },
     [`${moduleName}__selected_item`](state:any, payload:any) {

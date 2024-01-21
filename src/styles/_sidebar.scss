@@ -1,7 +1,7 @@
 .sidebar {
   $sidebar: &;
 
-  @apply fixed bottom-0 top-0 z-[60]  w-64 -translate-x-full overflow-hidden bg-white  transition-all duration-300 ease-in-out dark:bg-slate-800  lg:translate-x-0;
+  @apply fixed bottom-0 top-0 z-[60]  w-60  -translate-x-full overflow-hidden bg-primary-500  transition-all duration-300 ease-in-out dark:bg-slate-800  lg:translate-x-0;
 
   &.collapsed {
     @apply lg:w-20;
@@ -16,7 +16,7 @@
   }
 
   &-header {
-    @apply bg-gray-800 flex h-12 w-full items-center gap-4 px-4;
+    @apply flex h-12 w-full items-center gap-4 px-4;
   }
 
   &-logo-icon {
@@ -41,8 +41,18 @@
 
     > li {
       @apply px-[18px];
-    }
+      &.active {
+        @apply  text-primary-500 relative bg-danger-500  border-l-4 border-white dark:bg-slate-700 dark:text-slate-200;
+      
+      }
+     
+  
+      &.active &-icon {
+        @apply text-primary-500 rounded-primary ;
+      }
 
+    }
+    
     .simplebar-content {
       @apply space-y-0.5;
       > li {
@@ -50,12 +60,16 @@
       }
     }
   }
-
+  
   &-menu {
-    @apply flex w-full items-center gap-1  p-1 text-sm transition-colors duration-150  text-primary-50 hover:text-primary-50 dark:hover:bg-primary-500 dark:hover:text-slate-200;
+    @apply flex w-full items-center gap-1  py-2 p-1 text-sm   text-primary-50 dark:hover:bg-primary-500 dark:hover:text-slate-200;
+   
+    &-text{
 
+    @apply text-sm text-white
+    }
     &-icon {
-      @apply flex h-5 w-5 min-w-max mr-2 flex-shrink-0 items-center justify-center text-primary-50 dark:text-slate-400;
+      @apply flex h-5 w-5 min-w-max mr-1 flex-shrink-0 items-center justify-center text-primary-50 dark:text-slate-400;
 
       svg {
         @apply h-5 w-5;
@@ -76,20 +90,10 @@
 
     &:hover &-icon,
     &:hover &-arrow {
-      @apply text-primary-500 dark:text-slate-200;
+      @apply text-white dark:text-slate-200;
     }
 
-    &.active {
-      @apply  text-primary-500 dark:bg-slate-700 dark:text-slate-200;
-    }
-
-    &.active &-icon {
-      @apply text-primary-500 rounded-primary ;
-    }
-
-    &.active &-arrow {
-      @apply text-primary-500 dark:text-slate-200;
-    }
+  
 
     #{$sidebar}.collapsed &-text {
       @apply hidden;
@@ -121,7 +125,7 @@
   }
 
   &-menu-header {
-    @apply pl-3  text-sm   text-slate-200;
+    @apply px-6 py-2 text-xs font-bold  uppercase  text-danger-600;
   }
 
   &-toggle {
